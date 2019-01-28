@@ -21,7 +21,7 @@ public class Plan {
 
     private LocalDateTime created;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Admin;
 
     public Long getId() {
