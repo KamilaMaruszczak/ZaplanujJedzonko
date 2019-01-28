@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +12,11 @@ public class DayName {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
     private int order;
+
 
     public DayName() {
     }
