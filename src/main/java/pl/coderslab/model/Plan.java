@@ -22,7 +22,10 @@ public class Plan {
     private LocalDateTime created;
 
     @ManyToOne
-    private Admin;
+    private admin;
+
+    @ManyToMany
+    private recipe;
 
     public Long getId() {
         return id;
@@ -54,5 +57,21 @@ public class Plan {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public Admin getAdmin() {
+        return this.admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Recipe getRecipe() {
+        return this.recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        return this.recipe;
     }
 }
