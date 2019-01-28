@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "plans")
 public class Plan {
 
     @Id
