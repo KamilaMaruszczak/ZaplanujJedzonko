@@ -1,5 +1,8 @@
 package pl.coderslab.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +14,22 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank
     private String firstname;
+
+    @NotBlank
     private String lastname;
+
+    @Email
+    @NotBlank
     private String email;
+    
+    @NotBlank
     private String password;
+
     private int superadmin;
+
     private int enabled;
 
     @Override
