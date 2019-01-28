@@ -22,10 +22,10 @@ public class Plan {
     private LocalDateTime created;
 
     @ManyToOne
-    private admin;
+    private Admin admin;
 
     @ManyToMany
-    private recipe;
+    private Recipe recipe;
 
     public Long getId() {
         return id;
