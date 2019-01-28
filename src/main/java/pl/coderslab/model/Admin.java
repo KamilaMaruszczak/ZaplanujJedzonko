@@ -3,10 +3,7 @@ package pl.coderslab.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Admin {
@@ -24,13 +21,21 @@ public class Admin {
     @Email
     @NotBlank
     private String email;
-    
+
     @NotBlank
     private String password;
 
     private int superadmin;
 
     private int enabled;
+
+    @OneToMany(mappedBy = "admin",
+            cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private Recipe recipe;
+
+    @OneToMany(mappedBy = "admin",
+            cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private Plan plan;
 
     @Override
     public String toString() {
