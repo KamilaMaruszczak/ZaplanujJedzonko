@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "plans")
@@ -25,8 +27,11 @@ public class Plan {
     @ManyToOne
     private Admin admin;
 
+
+
     @ManyToMany
-    private Recipe recipe;
+    private List<Recipe> recipes = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -68,11 +73,16 @@ public class Plan {
         this.admin = admin;
     }
 
-    public Recipe getRecipe() {
-        return this.recipe;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipe(Recipe recipe) {
-        return this.recipe;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
+
+
+
+
+
 }

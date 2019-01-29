@@ -46,9 +46,14 @@ public class Recipe {
 
 
 
+
     @ManyToOne
     private Admin admin;
 
+
+
+    @ManyToMany
+    private List<Plan> plans = new ArrayList<>();
 
 
     public long getId() {

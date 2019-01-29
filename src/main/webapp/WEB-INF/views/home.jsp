@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="components/header.jsp"/>
 
+
+
+
+
+
 <body>
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-around">
@@ -19,7 +24,7 @@
                 <a class="nav-link" href="#about">o aplikacji</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="recipes.html">Przepisy</a>
+                <a class="nav-link disabled" href="/JEE_ScrumLab_war_exploded/recipe/list">Przepisy</a>
             </li>
             <li class="nav-item ml-4">
                 <a class="nav-link disabled" href="#contact">Kontakt</a>
