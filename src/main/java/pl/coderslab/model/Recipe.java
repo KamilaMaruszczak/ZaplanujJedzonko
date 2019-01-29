@@ -1,17 +1,16 @@
 package pl.coderslab.model;
 
 
-import org.hibernate.validator.constraints.Email;
+
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
+
 
 
 @Entity
@@ -22,7 +21,7 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 
     @NotBlank
@@ -35,27 +34,25 @@ public class Recipe {
     @NotBlank
     private String description;
 
-    @CreatedDate
+
     private LocalDateTime created;
 
-    @LastModifiedDate
-    private Date updated;
 
+    private LocalDateTime updated;
 
-    private int preparation_time;
-
+    @Column(name = "preparation_time")
+    private int preparationtime;
 
 
     @ManyToOne
     private Admin admin;
 
 
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -91,20 +88,20 @@ public class Recipe {
         this.created = created;
     }
 
-    public Date getUpdated() {
+    public LocalDateTime getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
+    public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
 
-    public int getPreparation_time() {
-        return preparation_time;
+    public int getPreparationtime() {
+        return preparationtime;
     }
 
-    public void setPreparation_time(int preparation_time) {
-        this.preparation_time = preparation_time;
+    public void setPreparationtime(int preparationtime) {
+        this.preparationtime = preparationtime;
     }
 
     public Admin getAdmin() {
@@ -125,7 +122,7 @@ public class Recipe {
                 ", description='" + description + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +
-                ", preparation_time=" + preparation_time +
+                ", preparationtime=" + preparationtime +
                 ", admin=" + admin +
                 '}';
 
