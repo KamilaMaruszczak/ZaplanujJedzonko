@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Admin {
@@ -31,11 +32,11 @@ public class Admin {
 
     @OneToMany(mappedBy = "admin",
             cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    private Recipe recipe;
+    private List<Recipe> recipes;
 
     @OneToMany(mappedBy = "admin",
             cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    private Plan plan;
+    private List<Plan> plans;
 
     @Override
     public String toString() {
@@ -61,11 +62,11 @@ public class Admin {
         this.superadmin = superadmin;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -117,20 +118,20 @@ public class Admin {
         this.enabled = enabled;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
-    public Plan getPlan() {
-        return plan;
+    public List<Plan> getPlans() {
+        return plans;
     }
 
-    public void setPlan(Plan plan) {
-        this.plan = plan;
+    public void setPlans(List<Plan> plans) {
+        this.plans = plans;
     }
 }
 

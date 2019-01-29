@@ -41,7 +41,7 @@ public class Recipe {
     private LocalDateTime updated;
 
     @Column(name = "preparation_time")
-    private int preparationtime;
+    private int preparationTime;
 
 
     @ManyToOne
@@ -96,12 +96,12 @@ public class Recipe {
         this.updated = updated;
     }
 
-    public int getPreparationtime() {
-        return preparationtime;
+    public int getPreparationTime() {
+        return preparationTime;
     }
 
-    public void setPreparationtime(int preparationtime) {
-        this.preparationtime = preparationtime;
+    public void setPreparationTime(int preparationTime) {
+        this.preparationTime = preparationTime;
     }
 
     public Admin getAdmin() {
@@ -122,7 +122,7 @@ public class Recipe {
                 ", description='" + description + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +
-                ", preparationtime=" + preparationtime +
+                ", preparationtime=" + preparationTime +
                 ", admin=" + admin +
                 '}';
 
