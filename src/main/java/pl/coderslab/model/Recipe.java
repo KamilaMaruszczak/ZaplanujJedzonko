@@ -2,6 +2,7 @@ package pl.coderslab.model;
 
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -24,14 +25,14 @@ public class Recipe {
     private long id;
 
 
-    @NotNull
+    @NotBlank
     private String name;
 
-    @NotNull
+    @NotBlank
     private String ingredients;
 
 
-    @NotNull
+    @NotBlank
     private String description;
 
     @CreatedDate
@@ -45,8 +46,10 @@ public class Recipe {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER)//cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Admin admin  = new Admin();
+    @ManyToOne
+    private Admin admin;
+
+
 
     public long getId() {
         return id;
@@ -111,6 +114,45 @@ public class Recipe {
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
+
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", preparation_time=" + preparation_time +
+                ", admin=" + admin +
+                '}';
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
