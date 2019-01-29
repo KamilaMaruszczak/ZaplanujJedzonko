@@ -1,9 +1,11 @@
 package pl.coderslab.model;
 
+import org.hibernate.mapping.ToOne;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "plan_recipe")
@@ -20,12 +22,12 @@ public class PlanRecipe {
     private int order;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private DayName dayName;
+    private List<DayName> daynames;
 
     @OneToMany
-    private Recipe recipe;
+    private List<Recipe> recipies;
 
-    @OneToMany
+    @ManyToOne
     private Plan plan;
 
     public Long getId() {
@@ -52,20 +54,20 @@ public class PlanRecipe {
         this.order = order;
     }
 
-    public DayName getDayName() {
-        return dayName;
+    public List<DayName> getDaynames() {
+        return daynames;
     }
 
-    public void setDayName(DayName dayName) {
-        this.dayName = dayName;
+    public void setDaynames(List<DayName> daynames) {
+        this.daynames = daynames;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public List<Recipe> getRecipies() {
+        return recipies;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipies(List<Recipe> recipies) {
+        this.recipies = recipies;
     }
 
     public Plan getPlan() {

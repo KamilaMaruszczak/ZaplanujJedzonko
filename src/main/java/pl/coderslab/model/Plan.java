@@ -26,8 +26,8 @@ public class Plan {
     @ManyToOne
     private Admin admin;
 
-    @ManyToMany
-    private List<Recipe> recipes;
+    @OneToMany(mappedBy = "plan")
+    private List<PlanRecipe> planRecipes;
 
     public Long getId() {
         return id;
