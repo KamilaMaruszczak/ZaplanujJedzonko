@@ -21,7 +21,7 @@ public class PlanRecipe {
     @NotNull
     private int order;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     private List<DayName> daynames;
 
     @OneToMany
