@@ -15,7 +15,8 @@ public class DayName {
     @NotBlank
     private String name;
 
-    private int order;
+    @Column(name="day_order")
+    private int dayOrder;
 
 
     public DayName() {
@@ -24,7 +25,7 @@ public class DayName {
     public DayName(Long id, String name, int order) {
         this.id = id;
         this.name = name;
-        this.order = order;
+        this.dayOrder = order;
     }
 
     public Long getId() {
@@ -43,12 +44,12 @@ public class DayName {
         this.name = name;
     }
 
-    public int getOrder() {
-        return order;
+    public int getDayOrder() {
+        return dayOrder;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setDayOrder(int dayOrder) {
+        this.dayOrder = dayOrder;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class DayName {
         return "DayName{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", order=" + order +
+                ", order=" + dayOrder +
                 '}';
     }
 }

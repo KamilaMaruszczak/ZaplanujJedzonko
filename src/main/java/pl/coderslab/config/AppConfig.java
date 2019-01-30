@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pl.coderslab.converter.DayNameConverter;
 
 
 import javax.persistence.EntityManagerFactory;
@@ -68,6 +69,16 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public Validator validator() {
         return new LocalValidatorFactoryBean();
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(getDayNameConverter());
+    }
+
+    @Bean
+    public DayNameConverter getDayNameConverter() {
+        return new DayNameConverter();
     }
 
 

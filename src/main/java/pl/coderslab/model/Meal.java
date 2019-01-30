@@ -14,10 +14,12 @@ public class Meal {
     private Long id;
 
     @NotBlank
+    @Column(name = "meal_name")
     private String mealName;
 
     @NotNull
-    private int order;
+    @Column(name = "meal_order")
+    private int mealOrder;
 
     @ManyToOne
     private DayName dayName;
@@ -44,12 +46,12 @@ public class Meal {
         this.mealName = mealName;
     }
 
-    public int getOrder() {
-        return order;
+    public int getMealOrder() {
+        return mealOrder;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setMealOrder(int mealOrder) {
+        this.mealOrder = mealOrder;
     }
 
     public DayName getDayName() {
