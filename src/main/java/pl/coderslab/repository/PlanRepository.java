@@ -6,7 +6,7 @@ import pl.coderslab.model.Plan;
 
 public interface PlanRepository extends JpaRepository<Plan, Long> {
 
-    long countByAdmin(Admin admin); //do przetestowania czy zadziała jak już dodamy Admina
+    long countByAdmin(Admin admin);
     Plan findFirstByAdminOrderByCreatedDesc(Admin admin); //jw
 
 }

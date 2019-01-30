@@ -78,7 +78,7 @@ public class AdminController {
                 if (email.equals(admin.getEmail()) && password.equals(admin.getPassword())) {
                     session.setAttribute("admin", admin);
                     session.setMaxInactiveInterval(5 * 60);
-                    return "redirect:/";
+                    return "redirect:/app/dashboard";
                 } else {
                     model.addAttribute("admin", new Admin());
                     model.addAttribute("errorMessage", "Błędny login lub hasło!");
