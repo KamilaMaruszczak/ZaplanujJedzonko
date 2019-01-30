@@ -69,11 +69,11 @@ public class Plan {
         this.admin = admin;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
+    public List<PlanRecipe> getPlanRecipes() {
+        return planRecipes;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
+    public void setPlanRecipes(List<PlanRecipe> planRecipes) {
+        this.planRecipes = planRecipes;
     }
 }
