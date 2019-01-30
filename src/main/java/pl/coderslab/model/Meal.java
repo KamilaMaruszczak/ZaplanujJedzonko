@@ -8,24 +8,24 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "plan_recipe")
-public class PlanRecipe {
+@Table(name = "meal")
+public class Meal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String mealname;
+    private String mealName;
 
     @NotNull
     private int order;
 
-    @OneToMany
-    private List<DayName> daynames;
+    @ManyToOne
+    private DayName dayName;
 
-    @OneToMany
-    private List<Recipe> recipies;
+    @ManyToOne
+    private Recipe recipe;
 
     @ManyToOne
     private Plan plan;
