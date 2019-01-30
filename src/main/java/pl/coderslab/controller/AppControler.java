@@ -32,10 +32,6 @@ public class AppControler {
         model.addAttribute("planCount", planRepository.countByAdmin(admin));
         Plan lastPlan = planRepository.findFirstByAdminOrderByCreatedDesc(admin);
         List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(lastPlan);
-        for (DayName d:days) {
-            System.out.println(d.getName());
-        }
-
         return "dashboard";
     }
 
