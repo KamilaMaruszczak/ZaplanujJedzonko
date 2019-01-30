@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import pl.coderslab.model.Admin;
 import pl.coderslab.model.DayName;
@@ -13,6 +14,7 @@ import pl.coderslab.repository.MealRepository;
 import pl.coderslab.repository.PlanRepository;
 import pl.coderslab.repository.RecipeRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -32,7 +34,31 @@ public class AppControler {
         model.addAttribute("planCount", planRepository.countByAdmin(admin));
         Plan lastPlan = planRepository.findFirstByAdminOrderByCreatedDesc(admin);
         List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(lastPlan);
+        model.addAttribute("lastPlan", lastPlan);
         return "dashboard";
+    }
+
+    @RequestMapping(path = "/addplan", method = RequestMethod.GET)
+    public String addPlan() {
+        return "add_plan";
+    }
+
+    @RequestMapping(path = "/addplan", method = RequestMethod.POST)
+    public String addPlan(@RequestParam String planName, @RequestParam String planDescription, @SessionAttribute Admin admin, Model model) {
+
+        if (planName == null || planName.isEmpty()) {
+            model.addAttribute("error", "Nazwa planu nie może być pusta.");
+            return "add_plan";
+        }
+        Plan plan = new Plan();
+        plan.setName(planName);
+        plan.setDescription(planDescription);
+        plan.setCreated(LocalDateTime.now());
+        plan.setAdmin(admin);
+        planRepository.save(plan);
+
+        return "redirect: /app/dashboard";
+
     }
 
 }
