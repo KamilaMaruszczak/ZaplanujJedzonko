@@ -1,28 +1,17 @@
 package pl.coderslab.model;
-
-
-
 import org.hibernate.validator.constraints.NotBlank;
-
-
 import javax.persistence.*;
-
 import java.time.LocalDateTime;
-
-import java.util.Date;
 
 
 
 @Entity
+@Table(name = "recipes")
 public class Recipe {
-
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @NotBlank
     private String name;
@@ -30,23 +19,18 @@ public class Recipe {
     @NotBlank
     private String ingredients;
 
-
     @NotBlank
     private String description;
 
-
     private LocalDateTime created;
-
 
     private LocalDateTime updated;
 
     @Column(name = "preparation_time")
     private int preparationTime;
 
-
     @ManyToOne
     private Admin admin;
-
 
     public Long getId() {
         return id;

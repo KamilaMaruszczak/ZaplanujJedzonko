@@ -27,7 +27,7 @@ public class Plan {
     private Admin admin;
 
     @OneToMany(mappedBy = "plan")
-    private List<PlanRecipe> planRecipes;
+    private List<Meal> meals;
 
     public Long getId() {
         return id;
@@ -69,11 +69,11 @@ public class Plan {
         this.admin = admin;
     }
 
-    public List<PlanRecipe> getPlanRecipes() {
-        return planRecipes;
+    public List<Meal> getMeals() {
+        return meals;
     }
 
-    public void setPlanRecipes(List<PlanRecipe> planRecipes) {
-        this.planRecipes = planRecipes;
+    public void setMeals(List<Meal> meals) {
+        this.meals = meals;
     }
 }

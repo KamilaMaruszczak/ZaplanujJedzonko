@@ -1,14 +1,12 @@
 package pl.coderslab.model;
 
-import org.hibernate.mapping.ToOne;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
-@Table(name = "meal")
+@Table(name = "meals")
 public class Meal {
 
     @Id
@@ -38,12 +36,12 @@ public class Meal {
         this.id = id;
     }
 
-    public String getMealname() {
-        return mealname;
+    public String getMealName() {
+        return mealName;
     }
 
-    public void setMealname(String mealname) {
-        this.mealname = mealname;
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
     }
 
     public int getOrder() {
@@ -54,20 +52,20 @@ public class Meal {
         this.order = order;
     }
 
-    public List<DayName> getDaynames() {
-        return daynames;
+    public DayName getDayName() {
+        return dayName;
     }
 
-    public void setDaynames(List<DayName> daynames) {
-        this.daynames = daynames;
+    public void setDayName(DayName dayName) {
+        this.dayName = dayName;
     }
 
-    public List<Recipe> getRecipies() {
-        return recipies;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setRecipies(List<Recipe> recipies) {
-        this.recipies = recipies;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public Plan getPlan() {
@@ -76,14 +74,5 @@ public class Meal {
 
     public void setPlan(Plan plan) {
         this.plan = plan;
-    }
-
-    @Override
-    public String toString() {
-        return "PlanRecipe{" +
-                "id=" + id +
-                ", mealname='" + mealname + '\'' +
-                ", order=" + order +
-                '}';
     }
 }
