@@ -3,10 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Admin;
 import pl.coderslab.model.DayName;
 import pl.coderslab.model.Plan;
@@ -39,9 +36,7 @@ public class AppControler {
     }
 
     @RequestMapping(path = "/addplan", method = RequestMethod.GET)
-    public String addPlan() {
-        return "add_plan";
-    }
+    public String addPlan() { return "add_plan"; }
 
     @RequestMapping(path = "/addplan", method = RequestMethod.POST)
     public String addPlan(@RequestParam String planName, @RequestParam String planDescription, @SessionAttribute Admin admin, Model model) {
@@ -60,5 +55,17 @@ public class AppControler {
         return "redirect: /app/dashboard";
 
     }
+
+    @RequestMapping(path = "/plan/details/{id}")
+    public String planDetails(@PathVariable long id, Model model) {
+        Plan plan = planRepository.findOne(id);
+        if (plan == null) {
+            return "redirect: /app/addplan";
+        }
+
+        model.addAttribute("plan", planRepository.findOne(id));
+        return "plan_details";
+    }
+
 
 }
