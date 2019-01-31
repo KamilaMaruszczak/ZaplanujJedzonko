@@ -3,17 +3,18 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Admin;
 import pl.coderslab.model.DayName;
+import pl.coderslab.model.Meal;
 import pl.coderslab.model.Plan;
+import pl.coderslab.repository.DayNameRepository;
 import pl.coderslab.repository.MealRepository;
 import pl.coderslab.repository.PlanRepository;
 import pl.coderslab.repository.RecipeRepository;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,6 +28,13 @@ public class AppControler {
     PlanRepository planRepository;
     @Autowired
     MealRepository mealRepository;
+    @Autowired
+    DayNameRepository dayNameRepository;
+
+    @ModelAttribute("days")
+    public List<DayName> dayNames() {
+        return dayNameRepository.findAll();
+    }
 
     @RequestMapping(path = "/dashboard", method = RequestMethod.GET)
     public String showDashboard(@SessionAttribute Admin admin, Model model) {
@@ -38,12 +46,12 @@ public class AppControler {
         return "dashboard";
     }
 
-    @RequestMapping(path = "/addplan", method = RequestMethod.GET)
+    @RequestMapping(path = "/plan/add", method = RequestMethod.GET)
     public String addPlan() {
         return "add_plan";
     }
 
-    @RequestMapping(path = "/addplan", method = RequestMethod.POST)
+    @RequestMapping(path = "/plan/add", method = RequestMethod.POST)
     public String addPlan(@RequestParam String planName, @RequestParam String planDescription, @SessionAttribute Admin admin, Model model) {
 
         if (planName == null || planName.isEmpty()) {
@@ -60,5 +68,29 @@ public class AppControler {
         return "redirect: /app/dashboard";
 
     }
+
+    public void addToModel(Admin admin, Model model) {
+        model.addAttribute("plans", planRepository.findAllByAdmin(admin));
+        model.addAttribute("recipies", recipeRepository.findAllByAdmin(admin));
+    }
+
+    @RequestMapping(path = "/recipe/plan/add", method = RequestMethod.GET)
+    public String addMeal(Model model, @SessionAttribute Admin admin) {
+        model.addAttribute("meal", new Meal());
+        addToModel(admin, model);
+        return "add_meal";
+    }
+
+    @RequestMapping(path = "/recipe/plan/add", method = RequestMethod.POST)
+    public String addMeal(@Valid Meal meal, BindingResult result, Model model, @SessionAttribute Admin admin) {
+
+        if (result.hasErrors()) {
+            addToModel(admin, model);
+            return "add_meal";
+        }
+        mealRepository.save(meal);
+        return "redirect: /app/dashboard";
+    }
+
 
 }

@@ -1,9 +1,11 @@
 package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.NotBlank;
+import pl.coderslab.validator.NotEquals;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "meals")
@@ -17,16 +19,19 @@ public class Meal {
     @Column(name = "meal_name")
     private String mealName;
 
-    @NotNull
+    @NotEquals(rejectValues = 0, message = "nie może być 0")
     @Column(name = "meal_order")
     private int mealOrder;
 
+    @NotNull
     @ManyToOne
     private DayName dayName;
 
+    @NotNull
     @ManyToOne
     private Recipe recipe;
 
+    @NotNull
     @ManyToOne
     private Plan plan;
 

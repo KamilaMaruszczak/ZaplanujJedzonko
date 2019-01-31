@@ -17,6 +17,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.converter.DayNameConverter;
+import pl.coderslab.converter.PlanConverter;
+import pl.coderslab.converter.RecipeConverter;
 
 
 import javax.persistence.EntityManagerFactory;
@@ -73,12 +75,25 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
+
         registry.addConverter(getDayNameConverter());
+        registry.addConverter(getPlanConverter());
+        registry.addConverter(getRecipeConverter());
     }
 
     @Bean
     public DayNameConverter getDayNameConverter() {
         return new DayNameConverter();
+    }
+
+    @Bean
+    public PlanConverter getPlanConverter() {
+        return new PlanConverter();
+    }
+
+    @Bean
+    public RecipeConverter getRecipeConverter() {
+        return new RecipeConverter();
     }
 
 

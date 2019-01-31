@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="schedules-content">
-                    <form method="post" action="/app/addplan" id="plan">
+                    <form method="post" action="/app/plan/add" id="plan">
                         <div class="form-group row">
                             <label for="planName" class="col-sm-2 label-size col-form-label">
                                 Nazwa planu
