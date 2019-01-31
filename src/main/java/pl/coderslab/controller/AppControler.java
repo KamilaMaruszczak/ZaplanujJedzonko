@@ -31,7 +31,7 @@ public class AppControler {
     @Autowired
     DayNameRepository dayNameRepository;
 
-    @ModelAttribute("days")
+    @ModelAttribute("allDays")
     public List<DayName> dayNames() {
         return dayNameRepository.findAll();
     }

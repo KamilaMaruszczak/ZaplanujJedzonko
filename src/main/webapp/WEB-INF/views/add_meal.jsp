@@ -74,7 +74,7 @@
                             <div class="col-sm-2">
                                 <form:select path="dayName" class="form-control">
                                     <form:option value="0" label="--Wybierz dzień--"/>
-                                    <form:options items="${days}" itemLabel="name" itemValue="id"/>
+                                    <form:options items="${allDays}" itemLabel="name" itemValue="id"/>
                                 </form:select>
                                 <form:errors path="dayName" cssClass="text-error"/>
                             </div>
