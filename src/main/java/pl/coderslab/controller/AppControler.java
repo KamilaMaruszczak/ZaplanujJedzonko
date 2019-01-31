@@ -41,8 +41,13 @@ public class AppControler {
         model.addAttribute("recipeCount", recipeRepository.countByAdmin(admin));
         model.addAttribute("planCount", planRepository.countByAdmin(admin));
         Plan lastPlan = planRepository.findFirstByAdminOrderByCreatedDesc(admin);
-        List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(lastPlan);
         model.addAttribute("lastPlan", lastPlan);
+        List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(lastPlan);
+        model.addAttribute("days", days);
+        System.out.println(days.size());
+        for (DayName d:days) {
+            model.addAttribute("meals"+days.indexOf(d), mealRepository.findByDayNameAndPlanOrderByMealOrder(d, lastPlan));
+        }
         return "dashboard";
     }
 
