@@ -1,6 +1,7 @@
 package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.NumberFormat;
 import pl.coderslab.validator.NotEquals;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Meal {
     private String mealName;
 
     @NotEquals(rejectValues = 0, message = "nie może być 0")
+    @NumberFormat
     @Column(name = "meal_order")
     private int mealOrder;
 

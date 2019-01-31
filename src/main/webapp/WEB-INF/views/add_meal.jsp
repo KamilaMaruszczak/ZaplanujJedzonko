@@ -50,7 +50,8 @@
                                 Numer posiłku
                             </label>
                             <div class="col-sm-2">
-                                <form:input path="mealOrder" type="text" placeholder="Numer posiłku"/>
+                                <form:input path="mealOrder" type="number" min="1" step="1"
+                                            placeholder="Numer posiłku"/>
                                 <form:errors path="mealOrder" cssClass="text-error"/>
                             </div>
                         </div>
