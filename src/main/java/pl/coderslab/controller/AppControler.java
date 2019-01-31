@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.model.Admin;
-import pl.coderslab.model.DayName;
-import pl.coderslab.model.Meal;
-import pl.coderslab.model.Plan;
+import pl.coderslab.model.*;
 import pl.coderslab.repository.DayNameRepository;
 import pl.coderslab.repository.MealRepository;
 import pl.coderslab.repository.PlanRepository;
@@ -95,6 +92,36 @@ public class AppControler {
         }
         mealRepository.save(meal);
         return "redirect: /app/dashboard";
+    }
+
+    @RequestMapping(path = "/recipe/list", method = RequestMethod.GET)
+    public String recipeList(Model model, @SessionAttribute Admin admin) {
+        model.addAttribute("allRecipes", recipeRepository.findAllByAdmin(admin));
+        return "recipe_list";
+    }
+
+    @RequestMapping(path = "/recipe/add", method = RequestMethod.GET)
+    public String addRecipe(Model model) {
+        model.addAttribute("recipe", new Recipe());
+        return "add_recipe";
+    }
+
+    @RequestMapping(path = "/recipe/add", method = RequestMethod.POST)
+    public String saveRecipe(@Valid Recipe recipe, BindingResult result, @SessionAttribute Admin admin) {
+        if(result.hasErrors()) {
+            return "add_recipe";
+        }
+        recipe.setAdmin(admin);
+        recipe.setCreated(LocalDateTime.now());
+        recipe.setUpdated(LocalDateTime.now());
+        recipeRepository.save(recipe);
+        return "redirect:/app/recipe/list";
+    }
+
+    @RequestMapping(path = "/recipe/details/{id}", method = RequestMethod.GET)
+    public String showRecipeDetails(@PathVariable String id, Model model) {
+        model.addAttribute(recipeRepository.findOne(Long.parseLong(id)));
+        return "recipe_details";
     }
 
 

@@ -10,17 +10,8 @@ import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
-
-
     long countByAdmin(Admin admin);
 
     List<Recipe> findAllByAdmin(Admin admin);
-
-
-
-
-
-
-
 
 }

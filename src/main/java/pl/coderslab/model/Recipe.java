@@ -29,6 +29,9 @@ public class Recipe {
     @Column(name = "preparation_time")
     private int preparationTime;
 
+    @NotBlank
+    private String preparation;
+
     @ManyToOne
     private Admin admin;
 
@@ -96,6 +99,13 @@ public class Recipe {
         this.admin = admin;
     }
 
+    public String getPreparation() {
+        return preparation;
+    }
+
+    public void setPreparation(String preparation) {
+        this.preparation = preparation;
+    }
 
     @Override
     public String toString() {
