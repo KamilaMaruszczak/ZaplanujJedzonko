@@ -13,7 +13,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/plans">
+        <a class="nav-link" href="/app/plan/list">
             <span>Plany</span>
             <i class="fas fa-angle-right"></i>
         </a>

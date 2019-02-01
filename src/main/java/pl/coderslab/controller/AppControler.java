@@ -41,11 +41,16 @@ public class AppControler {
         model.addAttribute("lastPlan", lastPlan);
         List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(lastPlan);
         model.addAttribute("days", days);
-        System.out.println(days.size());
         for (DayName d:days) {
             model.addAttribute("meals"+days.indexOf(d), mealRepository.findByDayNameAndPlanOrderByMealOrder(d, lastPlan));
         }
         return "dashboard";
+    }
+
+    @RequestMapping(path = "/plan/list", method = RequestMethod.GET)
+    public String planList(Model model, @SessionAttribute Admin admin) {
+        model.addAttribute("allPlans", planRepository.findAllByAdmin(admin));
+        return "plans";
     }
 
     @RequestMapping(path = "/plan/add", method = RequestMethod.GET)

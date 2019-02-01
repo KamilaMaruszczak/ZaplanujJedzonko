@@ -63,7 +63,8 @@
                                     <td class="col-2">${meal.mealName}</td>
                                     <td class="col-8">${meal.recipe.name}</td>
                                     <td class="col-2">
-                                        <button type="button" class="btn btn-primary rounded-0">Szczegóły</button>
+                                        <a class="btn btn-primary rounded-0"
+                                                href="/app/recipe/details/${meal.recipe.id}">Szczegóły</a>
                                     </td>
                                 </tr>
 
