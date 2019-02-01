@@ -41,7 +41,7 @@ public class Admin {
 
     @Override
     public String toString() {
-        return "Admin{" +
+        return "Admin {" +
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +

@@ -139,6 +139,8 @@ public class AppControler {
     public String deleteRecipe(@PathVariable Long id) {
         if (mealRepository.countByRecipeId(id)==0) {
             recipeRepository.delete(id);
+        } else {
+            System.out.println("Nie można usunąć przepisu bo jest w planie.");
         }
         return "redirect:/app/recipe/list";
     }
