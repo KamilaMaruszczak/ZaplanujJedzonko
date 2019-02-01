@@ -14,4 +14,7 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
 
     @Query("select distinct m.dayName from Meal m where m.plan = ?1 order by m.dayName.dayOrder")
     List<DayName> queryFindDistinctDaysByPlan(Plan plan);
+
+    List<Meal> findByDayNameAndPlanOrderByMealOrder(DayName d, Plan lastPlan);
+    int countByRecipeId(Long id);
 }
