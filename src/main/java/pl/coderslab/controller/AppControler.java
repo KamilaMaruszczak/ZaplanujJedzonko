@@ -145,5 +145,17 @@ public class AppControler {
         return "redirect:/app/recipe/list";
     }
 
+    @RequestMapping(path = "/plan/details/{id}")
+    public String showPlanDetails(@PathVariable Long id, Model model) {
+        System.out.println("CYCKI");
+        Plan plan = planRepository.findOne(id);
+        model.addAttribute("plan", plan);
+
+        List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(plan);
+        model.addAttribute("days", days);
+
+        return "plan_details";
+    }
+
 
 }
