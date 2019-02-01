@@ -1,5 +1,6 @@
 package pl.coderslab.model;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Plan {
     private Admin admin;
 
     @OneToMany(mappedBy = "plan")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Meal> meals;
 
     public Long getId() {

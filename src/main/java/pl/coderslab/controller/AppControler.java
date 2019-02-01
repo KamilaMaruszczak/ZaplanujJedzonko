@@ -76,6 +76,12 @@ public class AppControler {
 
     }
 
+    @RequestMapping(path = "/plan/delete/{id}", method = RequestMethod.GET)
+    public String deletePlan(@PathVariable Long id) {
+        planRepository.delete(id);
+        return "redirect:/app/plan/list";
+    }
+
     public void addToModel(Admin admin, Model model) {
         model.addAttribute("plans", planRepository.findAllByAdmin(admin));
         model.addAttribute("recipies", recipeRepository.findAllByAdmin(admin));
@@ -124,9 +130,17 @@ public class AppControler {
     }
 
     @RequestMapping(path = "/recipe/details/{id}", method = RequestMethod.GET)
-    public String showRecipeDetails(@PathVariable String id, Model model) {
-        model.addAttribute(recipeRepository.findOne(Long.parseLong(id)));
+    public String showRecipeDetails(@PathVariable Long id, Model model) {
+        model.addAttribute(recipeRepository.findOne(id));
         return "recipe_details";
+    }
+
+    @RequestMapping(path = "/recipe/delete/{id}", method = RequestMethod.GET)
+    public String deleteRecipe(@PathVariable Long id) {
+        if (mealRepository.countByRecipeId(id)==0) {
+            recipeRepository.delete(id);
+        }
+        return "redirect:/app/recipe/list";
     }
 
 

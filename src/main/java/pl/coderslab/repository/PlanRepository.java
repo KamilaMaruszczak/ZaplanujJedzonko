@@ -9,8 +9,7 @@ import java.util.List;
 public interface PlanRepository extends JpaRepository<Plan, Long> {
 
     long countByAdmin(Admin admin);
-    Plan findFirstByAdminOrderByCreatedDesc(Admin admin); //jw
-
+    Plan findFirstByAdminOrderByCreatedDesc(Admin admin);
     List<Plan> findAllByAdmin(Admin admin);
 
 }
