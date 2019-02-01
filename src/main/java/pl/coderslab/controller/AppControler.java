@@ -63,6 +63,8 @@ public class AppControler {
             return "redirect: /app/addplan";
         }
 
+        List<DayName> days = mealRepository.queryFindDistinctDaysByPlan(plan);
+        model.addAttribute("days", days);
         model.addAttribute("plan", planRepository.findOne(id));
         return "plan_details";
     }
