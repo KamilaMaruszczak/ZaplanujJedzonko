@@ -1,42 +1,8 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
+Zaplanuj Jedzonko
 
-### Przygotowanie – pliki css/js.
+Prosta aplikacja backendowa do obsługi portalu z planowaniem posiłków. Mamy tu serwis rejestracji i logowania, operacje CRUD z poziomu zalogowanego użytkownika, a także możliwość dodawania Planów żywieniowych, przepisów i łączenia przepisów z planem.
 
-Pliki **css** możemy umieścić w katalogu 
-````src/main/webapp/css````
-przy powyższej lokalizacji w plikach szablonów załączamy je w następujący sposób:
-````
-  <link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
-```` 
 
-### Dane do połączenia z bazą:
+Użyte technologie: • Spring WebMVC  • Hibernate • JSTL • Spring DATA  • Scrum
 
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
 
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
-
-### W przypadku wystąpienia błędu:
-````
-javax.naming.NameNotFoundException: Name [jdbc/scrumlab] is not bound in this Context. Unable to find [jdbc].
-````
-wykonujemy następujące kroki:
-
-Wybierz z górnego menu File –> Project Structure...
-
-W okienku, które się pojawi, kliknij z lewej strony w Facets następnie **Web**.
-
-Pojawi się okno, w którym kliknij **Add Application Server specific descriptor...**.
-
-![Screenshot](readme-img/context_03.png)
-
-Wybierz z listy serwer **Tomcat** i zaakceptuj przyciskiem **OK**.
-
-![Screenshot](readme-img/context_04.png)
-
-Na liście pojawi się plik **Tomcat Context Descriptor**. Potwierdź przyciskiem **OK**.
-
-![Screenshot](readme-img/context_05.png)
-
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
-
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
