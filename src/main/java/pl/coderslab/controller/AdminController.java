@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.model.Admin;
 import pl.coderslab.repository.AdminRepository;
+import pl.coderslab.service.AdminService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,9 @@ public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
 
+    @Autowired
+    private AdminService adminService;
+
     // rejestracja GET
     @RequestMapping("/register")
     public String registerPage(Model model) {
@@ -33,26 +38,26 @@ public class AdminController {
     // rejestracja POST
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerPagePost(@Valid Admin admin, BindingResult result, Model model, @RequestParam String password2) {
-        if (result.hasErrors()) {
-            return "registration";
-        }
 
-        // sprawdzenie hasła
-        if (!password2.equals(admin.getPassword())) {
-            model.addAttribute("admin", admin);
-            model.addAttribute("password2Message", "Hasła muszą być takie same!");
-            return "registration";
-        }
-
-        // sprawdzenie unikalności emaila
+        //walidacja pól
         int emails = adminRepository.countAllByEmail(admin.getEmail());
-        if (emails > 0) {
-            model.addAttribute("admin", admin);
-            model.addAttribute("errorMessage", "Taki email jest już używany!");
+        if (result.hasErrors() || emails > 0 || !password2.equals(admin.getPassword()) ) {
+
+            // sprawdzenie unikalności emaila
+            if (emails > 0) {
+                result.addError(new FieldError("admin", "email", "taki email jest już używany!"));
+            }
+
+            // sprawdzenie hasła
+            if (!password2.equals(admin.getPassword())) {
+                result.addError(new FieldError("admin", "password", "hasła się nie zgadzają"));
+            }
+
             return "registration";
         }
 
-        adminRepository.save(admin);
+        //zapisanie do bazy posolonego i zhashowanego hasła
+        adminService.save(admin);
         return "redirect:/login";
     }
 
