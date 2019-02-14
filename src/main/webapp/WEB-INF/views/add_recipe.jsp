@@ -26,21 +26,16 @@
                                 <th scope="row" class="col-2">Nazwa Przepisu</th>
                                 <td class="col-7">
                                     <form:input class="w-100 p-1" path="name"/>
-                                </td>
-                            </tr>
-                            <tr class="d-flex">
-                                <th scope="row" class="col-2"></th>
-                                <td class="col-7">
                                     <form:errors path="name" cssClass="text-error"/>
                                 </td>
                             </tr>
+
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Opis przepisu</th>
-                                <td class="col-7"><form:textarea class="w-100 p-1" path="description" rows="5"/></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <th scope="row" class="col-2"></th>
-                                <td class="col-7"><form:errors path="description" cssClass="text-error"/></td>
+                                <td class="col-7">
+                                    <form:textarea class="w-100 p-1" path="description" rows="5"/>
+                                    <form:errors path="description" cssClass="text-error"/>
+                                </td>
                             </tr>
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Przygotowanie (minuty)</th>
@@ -60,30 +55,22 @@
                         <div class="row d-flex">
                             <div class="col-5 p-4">
                                 <form:textarea class="w-100 p-1" path="preparation" rows="10"/>
-                            </div>
-                            <div class="col-2"></div>
-
-                            <div class="col-5 p-4">
-                                <form:textarea class="w-100 p-1" path="ingredients" rows="10"/>
-                            </div>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col-5 p-4">
                                 <form:errors path="preparation" cssClass="text-error"/>
                             </div>
                             <div class="col-2"></div>
 
                             <div class="col-5 p-4">
+                                <form:textarea class="w-100 p-1" path="ingredients" rows="10"/>
                                 <form:errors path="ingredients" cssClass="text-error"/>
                             </div>
                         </div>
+
                     </form:form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
+
 </section>
 
 

@@ -19,8 +19,8 @@
                     <tr class="d-flex text-color-darker">
                         <th scope="col" class="col-1">ID</th>
                         <th scope="col" class="col-2">NAZWA</th>
-                        <th scope="col" class="col-7">OPIS</th>
-                        <th scope="col" class="col-2 center">AKCJE</th>
+                        <th scope="col" class="col-3">OPIS</th>
+                        <th scope="col" class="col-4 center">AKCJE</th>
                     </tr>
                     </thead>
                     <tbody class="text-color-lighter">
@@ -28,13 +28,14 @@
                     <tr class="d-flex">
                         <th scope="row" class="col-1">${recipe.id}</th>
                         <td class="col-2">${recipe.name}</td>
-                        <td clas="col-7">${recipe.description}</td>
-                        <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
+                        <td class="col-3">${recipe.description}</td>
+                        <td class="col-4 d-flex align-items-center justify-content-center">
                             <a href="/app/recipe/delete/${recipe.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                             <a href="/app/recipe/details/${recipe.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                            <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                            <a href="/app/recipe/edit/${recipe.id}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a><br>
+                            ${error}
                         </td>
-                    </tr>
+
                     </c:forEach>
                     </tbody>
                 </table>

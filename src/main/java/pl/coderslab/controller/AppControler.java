@@ -47,6 +47,7 @@ public class AppControler {
         return "dashboard";
     }
 
+//PLAN
     @RequestMapping(path = "/plan/list", method = RequestMethod.GET)
     public String planList(Model model, @SessionAttribute Admin admin) {
         model.addAttribute("allPlans", planRepository.findAllByAdmin(admin));
@@ -82,6 +83,8 @@ public class AppControler {
         return "redirect:/app/plan/list";
     }
 
+//POSIŁEK - MEAL
+
     public void addToModel(Admin admin, Model model) {
         model.addAttribute("plans", planRepository.findAllByAdmin(admin));
         model.addAttribute("recipies", recipeRepository.findAllByAdmin(admin));
@@ -104,6 +107,8 @@ public class AppControler {
         mealRepository.save(meal);
         return "redirect: /app/dashboard";
     }
+
+//PRZEPIS
 
     @RequestMapping(path = "/recipe/list", method = RequestMethod.GET)
     public String recipeList(Model model, @SessionAttribute Admin admin) {
@@ -136,11 +141,11 @@ public class AppControler {
     }
 
     @RequestMapping(path = "/recipe/delete/{id}", method = RequestMethod.GET)
-    public String deleteRecipe(@PathVariable Long id) {
+    public String deleteRecipe(@PathVariable Long id, Model model) {
         if (mealRepository.countByRecipeId(id)==0) {
             recipeRepository.delete(id);
         } else {
-            System.out.println("Nie można usunąć przepisu bo jest w planie.");
+            model.addAttribute("error","Nie można usunąć przepisu bo jest w planie.");
         }
         return "redirect:/app/recipe/list";
     }
